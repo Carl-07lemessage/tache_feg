@@ -108,7 +108,7 @@ export default function FEGProjectManager() {
             setSelectedProjectId={setSelectedProjectId}
           />
           <SidebarInset className="flex-1">
-            <header className="flex h-14 shrink-0 items-center gap-2 border-b border-stone-200 px-6 bg-white shadow-sm">
+            <header className="flex h-14 w-[100%] shrink-0 items-center gap-2 border-b border-stone-200 px-6 bg-white shadow-sm">
               <SidebarTrigger className="-ml-1 text-stone-600 hover:text-emerald-700" />
               <div className="flex items-center gap-3 text-sm text-stone-600">
                 <div className="relative w-6 h-6">

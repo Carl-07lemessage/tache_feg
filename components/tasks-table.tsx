@@ -32,7 +32,7 @@ function CellEditor({ column, value, onUpdate }: CellEditorProps) {
 
   if (isEditing) {
     return (
-      <div className="flex items-center gap-2">
+      <div className="flex items-center gap-4">
         {column.type === "date" ? (
           <Input type="date" value={editValue} onChange={(e) => setEditValue(e.target.value)} className="h-8 text-xs" />
         ) : column.type === "select" && column.options ? (
@@ -120,7 +120,7 @@ export function TasksTable({ projectId }: TasksTableProps) {
         </Button>
       </div>
 
-      <div className="border border-stone-200 rounded-lg overflow-hidden bg-white">
+      <div className="border border-stone-200 rounded-md overflow-hidden ">
         <Table>
           <TableHeader>
             <TableRow className="bg-stone-50">
