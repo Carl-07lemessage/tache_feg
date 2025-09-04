@@ -10,7 +10,7 @@ import "./globals.css"
 export const metadata: Metadata = {
   title: "FEG - Tableau de Bord",
   description: "Tableau de bord de gestion de projets - Fédération des Entreprises du Gabon",
-  generator: "v0.app",
+  generator: "FEG",
 }
 
 export default function RootLayout({

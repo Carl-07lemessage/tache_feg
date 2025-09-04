@@ -32,7 +32,7 @@ interface AppSidebarProps {
   projects: any[]
   isLoading: boolean
   error: string | null
-  handleCreateProject: (name: string, description?: string) => Promise<any>
+  handleCreateProject: (nom: string, description?: string) => Promise<any>
   selectedProjectId: string
   setSelectedProjectId: (id: string) => void
 }
@@ -47,7 +47,7 @@ export function AppSidebar({
 }: AppSidebarProps) {
   const [isProjectDialogOpen, setIsProjectDialogOpen] = useState(false)
   const [newProject, setNewProject] = useState({
-    name: "",
+    nom: "",
     description: "",
   })
 
@@ -62,12 +62,12 @@ export function AppSidebar({
   const getProjectIcon = () => <FolderOpen className="w-4 h-4 text-emerald-600" />
 
   const handleCreateNewProject = async () => {
-    if (!newProject.name.trim()) return
+    if (!newProject.nom.trim()) return
 
-    const result = await handleCreateProject(newProject.name, newProject.description)
+    const result = await handleCreateProject(newProject.nom, newProject.description)
     if (result.data) {
       setSelectedProjectId(result.data.id)
-      setNewProject({ name: "", description: "" })
+      setNewProject({ nom: "", description: "" })
       setIsProjectDialogOpen(false)
     }
   }
@@ -135,7 +135,7 @@ export function AppSidebar({
                         }`}
                       >
                         {getProjectIcon()}
-                        <span className="truncate">{project.name}</span>
+                        <span className="truncate  text-xl">{project.nom}</span>
                       </SidebarMenuButton>
                     </SidebarMenuItem>
                   ))
@@ -161,8 +161,8 @@ export function AppSidebar({
               </Label>
               <Input
                 id="name"
-                value={newProject.name}
-                onChange={(e) => setNewProject({ ...newProject, name: e.target.value })}
+                value={newProject.nom}
+                onChange={(e) => setNewProject({ ...newProject, nom: e.target.value })}
                 placeholder="Entrez le nom du projet"
                 className="border-stone-300 focus:border-emerald-500 focus:ring-emerald-200"
               />
@@ -186,7 +186,7 @@ export function AppSidebar({
             </Button>
             <Button
               onClick={handleCreateNewProject}
-              disabled={!newProject.name.trim()}
+              disabled={!newProject.nom.trim()}
               className="bg-emerald-700 hover:bg-emerald-800 text-white"
             >
               <Plus className="w-4 h-4 mr-2" />

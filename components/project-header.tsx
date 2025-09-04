@@ -15,7 +15,7 @@ import { MoreHorizontal, Trash2, Users, FileText, BarChart3 } from "lucide-react
 interface ProjectHeaderProps {
   project: {
     id: string
-    name: string
+    nom: string
     description?: string
   }
 }
@@ -27,7 +27,7 @@ export function ProjectHeader({ project }: ProjectHeaderProps) {
     <>
       <div className="p-6 border-b border-stone-200 bg-white">
         <div className="flex items-center justify-between">
-          <h1 className="text-2xl font-bold text-emerald-800">{project.name}</h1>
+          <h1 className="text-3xl font-bold text-emerald-800">{project.nom}</h1>
           <div className="flex items-center gap-3">
             <Button
               variant="outline"
@@ -68,7 +68,7 @@ export function ProjectHeader({ project }: ProjectHeaderProps) {
         isOpen={isShareDialogOpen}
         onClose={() => setIsShareDialogOpen(false)}
         projectId={project.id}
-        projectName={project.name}
+        projectName={project.nom}
       />
     </>
   )
