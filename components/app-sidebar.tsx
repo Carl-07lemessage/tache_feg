@@ -95,14 +95,14 @@ export function AppSidebar({
 
         <SidebarContent className="p-3">
           <SidebarGroup>
-            <SidebarGroupLabel className="text-stone-600 font-semibold text-xs px-3 py-2 flex items-center justify-between uppercase tracking-wide">
-              Projets Institutionnels
+            <SidebarGroupLabel className="mb-2 text-stone-600 font-bold text-xs px-3 gap-1.5 flex items-center justify-between flex-col uppercase tracking-wide">
+       
               <Button
                 onClick={() => setIsProjectDialogOpen(true)}
                 variant="ghost"
                 size="sm"
-                className="h-5 w-5 p-0 hover:bg-stone-200 text-emerald-700"
-              >
+                className=" hover:bg-stone-200 text-emerald-700"
+              >Nouveau Projet 
                 <Plus className="w-3 h-3" />
               </Button>
             </SidebarGroupLabel>
