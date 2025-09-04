@@ -77,7 +77,7 @@ interface TasksTableProps {
 
 export function TasksTable({ projectId }: TasksTableProps) {
   const { tasks, isLoading: tasksLoading, error: tasksError, handleCreateTask, handleUpdateTask } = useTasks(projectId)
-  const { columns, isLoading: columnsLoading, error: columnsError } = useProjectColumns() // <-- plus d'argument
+  const { columns, isLoading: columnsLoading, error: columnsError } = useProjectColumns()
 
   const handleCellUpdate = async (taskId: string, columnId: string, value: any) => {
     const task = tasks.find((t) => t.id === taskId)
@@ -104,7 +104,7 @@ export function TasksTable({ projectId }: TasksTableProps) {
   }
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-4 w-full flex flex-col items-center">
       {(tasksError || columnsError) && (
         <Alert className="border-red-200 bg-red-50">
           <AlertTriangle className="h-4 w-4 text-red-600" />
@@ -112,7 +112,8 @@ export function TasksTable({ projectId }: TasksTableProps) {
         </Alert>
       )}
 
-      <div className="flex justify-between items-center">
+      {/* En-tête d’actions */}
+      <div className="flex justify-between items-center w-full">
         <h3 className="text-lg font-semibold text-emerald-800">Tâches du Projet</h3>
         <Button onClick={handleAddTask} className="bg-emerald-700 hover:bg-emerald-800">
           <Plus className="w-4 h-4 mr-2" />
@@ -120,10 +121,11 @@ export function TasksTable({ projectId }: TasksTableProps) {
         </Button>
       </div>
 
-      <div className="border border-stone-200 rounded-md overflow-hidden ">
+      {/* Tableau qui occupe toute la largeur disponible (limité par le parent) */}
+      <div className="border border-stone-200 rounded-md overflow-auto w-full max-h-[70vh]">
         <Table>
-          <TableHeader>
-            <TableRow className="bg-stone-50">
+          <TableHeader className="sticky top-0 z-10 bg-emerald-50 shadow-sm">
+            <TableRow>
               {columns
                 .filter((c) => c.visible)
                 .map((col) => (

@@ -55,10 +55,18 @@ function MainContent({ selectedProjectId, projects }: { selectedProjectId: strin
   }
 
   return (
-    <div className="flex flex-col h-full">
+    <div className="flex flex-col h-full w-full bg-amber-300">
+      {/* Bandeau projet (sous le header global) */}
       <ProjectHeader project={selectedProject} />
-      <div className="flex-1 overflow-auto p-6 bg-stone-50">
-        <TasksTable projectId={selectedProjectId} />
+
+      {/* Conteneur qui scrolle */}
+      <div className="flex-1 overflow-auto bg-stone-50 p-6">
+        <div className="w-full flex justify-center">
+          {/* Tableau centré à 70% */}
+          <div className="w-[75vw] min-w-[600px]">
+            <TasksTable projectId={selectedProjectId} />
+          </div>
+        </div>
       </div>
     </div>
   )
@@ -98,7 +106,8 @@ export default function FEGProjectManager() {
   return (
     <ErrorBoundary>
       <SidebarProvider>
-        <div className="flex min-h-screen bg-stone-50">
+        <div className="flex h-screen w-screen bg-stone-50 overflow-hidden">
+          {/* Sidebar fixe */}
           <AppSidebar
             projects={projects}
             isLoading={projectsLoading}
@@ -107,8 +116,11 @@ export default function FEGProjectManager() {
             selectedProjectId={selectedProjectId}
             setSelectedProjectId={setSelectedProjectId}
           />
-          <SidebarInset className="flex-1">
-            <header className="flex h-14 w-[100%] shrink-0 items-center gap-2 border-b border-stone-200 px-6 bg-white shadow-sm">
+
+          {/* Contenu principal avec header fixe */}
+          <SidebarInset className="flex flex-col flex-1">
+            {/* Header fixe */}
+            <header className="flex h-14 w-full shrink-0 items-center gap-2 border-b border-stone-200 px-6 bg-white shadow-sm z-20 sticky top-0">
               <SidebarTrigger className="-ml-1 text-stone-600 hover:text-emerald-700" />
               <div className="flex items-center gap-3 text-sm text-stone-600">
                 <div className="relative w-6 h-6">
@@ -151,6 +163,8 @@ export default function FEGProjectManager() {
                 </DropdownMenu>
               </div>
             </header>
+
+            {/* Zone scrollable avec tableau centré */}
             <MainContent selectedProjectId={selectedProjectId} projects={projects} />
           </SidebarInset>
         </div>
